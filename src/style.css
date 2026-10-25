@@ -1,0 +1,98 @@
+:root {
+  --bg: #242328;
+  --text: #ececf0;
+  --muted: #8d8c95;
+  --line: rgba(236, 236, 240, 0.12);
+  --gutter: clamp(16px, 4.5vw, 64px);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 300;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  font-weight: inherit;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lead {
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.link-underline {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.5s var(--ease);
+}
+
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* Text fades/slides in once the intro finishes and as it scrolls into view */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 1s var(--ease),
+    transform 1s var(--ease);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
